@@ -1,0 +1,73 @@
+.GameList--game-details {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f0f0f0; 
+}
+
+.GameList--game-image-detail {
+    max-width: 200px;
+    height: auto;
+}
+
+.GameList--games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.GameList--game {
+    flex: 1 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    text-align: center;
+}
+
+.GameList--game-name {
+    border: 2px solid #333;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.GameList--game-image {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.GameList--actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+
+.GameList--actions-delete {
+    background-color: rgb(107, 8, 8);
+    color: white;
+    
+}
+
+.GameList--actions button:hover {
+    cursor: crosshair;
+    width: 150px;
+    box-shadow: (0,0,0,0.1);
+}
+
+.GameList--games-description {
+    width: 300px;
+    height: 80px;
+    overflow: hidden;
+}

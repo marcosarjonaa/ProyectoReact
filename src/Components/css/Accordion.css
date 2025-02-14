@@ -1,0 +1,35 @@
+.accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: fit-content;
+}
+
+.accordion-title {
+    background-color: #f5f5f5;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-title:hover {
+    background-color: #eaeaea;
+}
+
+.accordion-icon {
+    font-size: 20px;
+}
+
+.accordion-icon i{
+    width: 30px;
+    height: 30px;
+}
+
+.accordion-content {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
