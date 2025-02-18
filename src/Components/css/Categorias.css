@@ -1,0 +1,54 @@
+/* Categorias.css */
+
+.categorias-container {
+    border: 2px solid rgb(49, 145, 49); /* Borde verde oliva */
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f8f8f8; /* Gris claro de fondo */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+.categorias-container p {
+    color: rgb(49, 145, 49); /* Texto verde oliva */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.categorias-container div {
+    margin-bottom: 8px; /* Espacio entre opciones */
+    display: flex;
+    align-items: center; /* Alineación vertical */
+}
+
+.categorias-container input[type="radio"] {
+    appearance: none; /* Ocultar radio button predeterminado */
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgb(49, 145, 49); /* Borde verde oliva */
+    border-radius: 50%; /* Radio button circular */
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.categorias-container input[type="radio"]:checked {
+    background-color: rgb(49, 145, 49); /* Fondo verde oliva al seleccionar */
+    border: none;
+}
+
+.categorias-container label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Media queries para responsividad (opcional) */
+@media (max-width: 768px) {
+    .categorias-container {
+        padding: 10px; /* Ajustar padding en pantallas pequeñas */
+    }
+
+    .categorias-container label {
+        font-size: 14px; /* Ajustar tamaño de fuente en pantallas pequeñas */
+    }
+}

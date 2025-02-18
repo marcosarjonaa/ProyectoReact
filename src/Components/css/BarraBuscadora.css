@@ -1,0 +1,33 @@
+/* BarraBuscadora.css */
+.barraBuscadora {
+    border: 2px solid rgb(49, 145, 49); /* Borde verde oliva */
+    width: 950px;
+    height: fit-content;
+    padding: 15px;
+    background-color: whitesmoke;
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  
+  .barraBuscadora-label {
+    display: block; /* La etiqueta encima del input */
+    margin-bottom: 5px;
+    color: rgb(49, 145, 49); /* Color verde oliva */
+    font-weight: 500;
+  }
+  
+  .barraBuscadora-input {
+    border: 1px solid rgb(49, 145, 49); /* Borde verde oliva */
+    padding: 8px;
+    border-radius: 3px;
+    width: 900px; /* Ancho fijo para el input */
+    box-sizing: border-box; /* Para que el padding no aumente el ancho total */
+    font-size: 16px; /* Tamaño de fuente legible */
+    transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+  }
+  
+  .barraBuscadora-input:focus {
+    border-color: #A0A050; /* Verde oliva claro al hacer foco */
+    outline: none; /* Elimina el contorno predeterminado al hacer foco */
+    box-shadow: 0 0 5px rgba(49, 145, 49, 0.3); /* Sombra suave al hacer foco */
+  }

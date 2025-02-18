@@ -1,36 +1,19 @@
 import { useEffect, useState } from 'react';
-import GameForm from './Components/GameForm';
 import GameList from './Components/GameList';
-import Accordion from './Components/Accordion';
 import Header from './Components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BarraBuscadora from './Components/BarraBuscadora';
+import CheckBoxs from './Components/CheckBoxs';
 
 
 function App() {
   const [games, setGames] = useState([]);
+  const [juegoBuscado, setJuegoBuscado] = useState('')
 
   const downloadGames = async () => {
       const response = await fetch('http://localhost:3000/games');
       const apiGames = await response.json();
       setGames(apiGames);
-  }
-
-  const newGames = async (game) => {
-    try {
-      const response = await fetch('http://localhost:3000/games', {
-        method: 'POST',
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(game)
-      });
-      if (response.status === 201) {
-        downloadTeams();
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      return false;
-    } 
   }
 
   const deleteGames = async (id) => {
@@ -43,16 +26,54 @@ function App() {
     return response.status === 200;
   }
 
+
+  /**
+   * Este método se basa en que según el juego que 
+   * se escriba en la barra buscadora, componente que usa esto,
+   * filtra los juegos diosponibles
+   * @param {game} juego 
+   */
+  const buscarJuego = async (juego) => {
+    const response = await fetch('http://localhost:3000/games')
+    const allGames = await response.json()
+    const filtraPorJuego = allGames.filter(game => 
+      game.name.toLowerCase().includes(juego.toLowerCase())
+    )
+    setGames(filtraPorJuego)
+  }
+
+  const busquedaCategoria = async (id) => {
+    const response = await fetch('http://localhost:3000/games');
+    const categorias = await response.json();
+    const categoriasFiltradas = categorias.filter(game => 
+      Array.isArray(game.platforms) && game.platforms.includes(parseInt(id))
+    );
+    setGames(categoriasFiltradas);
+  }
+  
+  const busquedaPlataforma = async (id) => {
+    const response = await fetch('http://localhost:3000/games');
+    const plataformas = await response.json();
+    const plataformasFiltradas = plataformas.filter(game => 
+      Array.isArray(game.platforms) && game.platforms.includes(parseInt(id))
+    );
+    setGames(plataformasFiltradas);
+  }
+
   useEffect(()=>{
-    downloadGames();
-  }, []);
+    if (juegoBuscado==='') {
+      downloadGames();
+    }else{
+      buscarJuego(juegoBuscado)
+    }
+  }, [juegoBuscado]);
 
 
   return (<>
-    <Header/>
+    <Header/><br />
+    <BarraBuscadora  buscarJuegos={buscarJuego} setBuscarJuegos={setJuegoBuscado} juegoBuscado={juegoBuscado} />
+    <CheckBoxs busquedaCategoria={busquedaCategoria} busquedaPlataforma={busquedaPlataforma} />
     <h1>Lista de Videojuegos</h1>
-    <Accordion title="Hola hola">Esto es react</Accordion>
-    <GameForm newGame={newGames}/>
     <GameList games={games} deleteGame={deleteGames}/>
   </>)
 }

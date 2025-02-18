@@ -1,0 +1,40 @@
+/* Header.css */
+.navbar {
+  width:auto;
+    background-color: rgb(49, 145, 49) !important; /* Verde oliva directamente */
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-weight: 600;
+    color: #F5F5DC !important; /* Beige */
+  }
+  
+  .navbar-brand:hover {
+    color: #A0A050 !important; /* Verde oliva claro */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #EEEEEE !important; /* Gris claro */
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #F5F5DC !important; /* Beige */
+  }
+  
+  /* Estilos para el contenedor (opcional) */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Media query para hacerlo responsivo */
+  @media (max-width: 768px) {
+    .navbar-nav .nav-link {
+      margin-left: 0;
+      padding: 0.5rem 1rem;
+    }
+  }

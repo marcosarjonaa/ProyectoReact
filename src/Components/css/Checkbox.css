@@ -1,0 +1,73 @@
+/* CheckBoxs.css */
+.checkboxs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Aumenta el espacio entre elementos */
+  padding: 20px;
+  border: 2px solid rgb(49, 145, 49);
+  border-radius: 8px;
+  background-color: #f8f8f8; /* Un gris claro de fondo */
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+.checkboxs-container button {
+  background-color: rgb(49, 145, 49);
+  color: white;
+  padding: 10px 20px; /* Aumenta el padding del botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500; /* Texto del botón más grueso */
+  transition: background-color 0.3s ease;
+}
+
+.checkboxs-container button:hover {
+  background-color: #606000;
+}
+
+.filtros-container { /* Contenedor común para categorías y plataformas */
+  border: 1px solid rgb(49, 145, 49);
+  padding: 15px; /* Aumenta el padding */
+  border-radius: 5px;
+  background-color: white; /* Fondo blanco para los filtros */
+}
+
+.filtros-container h3 { /* Encabezado para los filtros */
+  color: rgb(49, 145, 49);
+  font-weight: 600; /* Encabezado más grueso */
+  margin-bottom: 10px;
+}
+
+.opcion-filtro { /* Estilo para cada opción de filtro */
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px; /* Aumenta el espacio entre opciones */
+}
+
+.opcion-filtro input[type="radio"] {
+  margin-right: 8px;
+  appearance: none; /* Oculta el radio button predeterminado */
+  width: 18px; /* Ajusta el tamaño del radio button */
+  height: 18px;
+  border: 2px solid rgb(49, 145, 49);
+  border-radius: 50%; /* Radio button circular */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.opcion-filtro input[type="radio"]:checked {
+  background-color: rgb(49, 145, 49); /* Fondo verde oliva al seleccionar */
+  border: none;
+}
+
+.opcion-filtro label {
+  cursor: pointer;
+  font-size: 16px; /* Tamaño de fuente más grande */
+}
+
+/* Media query para hacerlo responsivo */
+@media (max-width: 768px) {
+  .checkboxs-container {
+    flex-direction: column;
+  }
+}

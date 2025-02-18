@@ -1,51 +1,60 @@
 import './css/GameList.css';
-import './css/Accordion.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Detalles from './Detalles';
 
 const TeamList = ({games, deleteGame}) => {
-    const[detallada, setDetallada] = useState(null);
+    const[detallada, setDetallada] = useState("");
 
     const onDelete = (id) => {
         deleteGame(id);
     }
 
+    const handleVerDetalles = (id) => {
+        let game = games.find(game => game.id == id)
+        if (detallada.id == game.id) {
+            setDetallada("") //Para setearla a vacía
+        } else {
+            setDetallada(game) //La setea al videojuego
+        }
+    }
+
+    const cerrar = () => {
+        setDetallada("")
+    }
+
+
+
     return (
         <>
-            <p>Lista de equipos</p>
             <div className="GameList--games">
                 {games.map((game) => (
                     <div className="GameList--game-name" key={game.id}>
                         <img className='GameList--game-image' src={game.image} alt={game.name} /><br />
                         {game.name}
                         <br />
-                        <span className='GameList--actions'>
-                            <button onClick={() => setDetallada(game)}>Ver Detalles</button>
+                        <div className='GameList--actions'>
+                            <button onClick={() => handleVerDetalles(game.id)}>Ver Detalles</button> {/* Usamos la nueva función */}
                             <button className='GameList--actions-delete' onClick={() => onDelete(game.id)}>Borrar</button>
-                        </span>
+                        </div>
                     </div>
                 ))}
             </div>
-            {detallada && (
-                <div>
-                    <div>
-                        <span className="close" onClick={() => setDetallada(null)}>&times;</span>   
-                        <img src={detallada.image} alt={detallada.name} />
-                        <h4>{detallada.name}</h4>
-                        <p>{detallada.description}</p><br />
-                        <p>Fecha de Lanzamiento: {detallada.releaseDate}</p>
-                        <p>Compañía: {detallada.company}</p>
-                        <p>Plataformas: {detallada.platforms.map(id => platforms.find(p => p.id === id)?.name)}</p>
-                        <p>Categorías: {detallada.category.map(id => categories.find(c => c.id === id)?.name)}</p>
-                        <p>Precio:{detallada.cost}</p>
-                        <iframe 
-                            width="560" height="315" 
-                            src={detallada.video} title="YouTube video player" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
-                        ></iframe>
-                    </div>
+            {detallada && ( 
+                <div style={{border:"10px solid black"}}>
+                    <img src={detallada.image} alt="Imagen de videojuego" />
+                    <h4>{detallada.name}</h4>
+                    <p>{detallada.description}</p>
+                    <p>Fecha de Lanzamiento: {detallada.releaseDate}</p>
+                    <p>Compañía: {detallada.company}</p>
+                    <p>Plataformas: {detallada.platforms.name}</p>
+                    <p>Categorías: {detallada.category.name}</p>
+                    <p>Precio: {detallada.cost}</p>
+                    <a href={detallada.video}>Enlace a youtube</a><br /><br />
+                    <button onClick={cerrar}>Cerrar detalles</button>
                 </div>
-            )}
+                // Tengo problemas a la hora de mostrar y ocultar entonces lo voy a hacer aquí
+                //<Detalles detallada={detallada} cerrar={cerrar} />
+             )}
         </>
     )
 }

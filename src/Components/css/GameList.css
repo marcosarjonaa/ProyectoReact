@@ -1,14 +1,4 @@
-.GameList--game-details {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #f0f0f0; 
-}
-
-.GameList--game-image-detail {
-    max-width: 200px;
-    height: auto;
-}
+/* GameList.css */
 
 .GameList--games {
     display: flex;
@@ -16,58 +6,126 @@
     gap: 20px;
     justify-content: center;
     padding: 20px;
-}
-
-.GameList--game {
-    flex: 1 1;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    text-align: center;
-}
-
-.GameList--game-name {
-    border: 2px solid #333;
-    margin-left: 30px;
-    margin-bottom: 30px;
+    background-color: #f8f8f8;
+  }
+  
+  .GameList--game-name {
+    border: 2px solid rgb(49, 145, 49);
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 1.2rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     text-align: center;
-}
-
-.GameList--game-image {
+    background-color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: calc(33.33% - 20px); /* Ancho para 3 elementos por fila */
+  }
+  
+  .GameList--game-name:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .GameList--game-image {
     width: 100%;
-    max-width: 300px;
-    height: 400px;
+    max-width: 250px;
+    height: 350px;
     object-fit: cover;
     border-radius: 8px;
-    border: 2px solid #ddd;
-}
-
-.GameList--actions {
+    border: 2px solid rgb(49, 145, 49);
+    margin-bottom: 10px;
+  }
+  
+  .GameList--actions {
     display: flex;
     justify-content: center;
+    gap: 10px;
     margin-top: 10px;
-    
-}
-
-.GameList--actions-delete {
-    background-color: rgb(107, 8, 8);
+  }
+  
+  .GameList--actions button {
+    background-color: rgb(49, 145, 49);
     color: white;
-    
-}
-
-.GameList--actions button:hover {
-    cursor: crosshair;
-    width: 150px;
-    box-shadow: (0,0,0,0.1);
-}
-
-.GameList--games-description {
-    width: 300px;
-    height: 80px;
-    overflow: hidden;
-}
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .GameList--actions button:hover {
+    background-color: #606000;
+  }
+  
+  .GameList--actions-delete {
+    background-color: #c0392b;
+  }
+  
+  .GameList--actions-delete:hover {
+    background-color: #922b21;
+  }
+  
+  .GameList--game-details {
+    border: 2px solid rgb(49, 145, 49);
+    padding: 20px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .GameList--game-details img {
+    max-width: 250px;
+    height: auto;
+    float: left;
+    margin-right: 20px;
+    border: 2px solid rgb(49, 145, 49);
+    border-radius: 8px;
+  }
+  
+  .GameList--game-details h4 {
+    color: rgb(49, 145, 49);
+    margin-bottom: 10px;
+  }
+  
+  .GameList--game-details p {
+    margin-bottom: 5px;
+  }
+  
+  .GameList--game-details a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .GameList--game-details a:hover {
+    text-decoration: underline;
+  }
+  
+  .GameList--game-details button {
+    background-color: rgb(49, 145, 49);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .GameList--game-details button:hover {
+    background-color: #606000;
+  }
+  
+  /* Media query para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .GameList--game-name {
+      width: calc(50% - 20px); /* Dos elementos por fila en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .GameList--game-name {
+      width: 100%; /* Un elemento por fila en pantallas pequeñas */
+    }
+  }
