@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import api from "../services/api";
 
 export const TOKEN_KEY = 'TOKEN';
 
@@ -12,72 +13,52 @@ const AuthProvider = ({children}) => {
         jwt:''
     })
 
+    const redireccion = (navigate) => {
+        const token = localStorage.getItem("TOKEN")
+        if(token == null || token == undefined){
+            navigate("/")
+        }
+    }
+
+
     const login = async (email, password) => {
-        try {
-            //Instrucciones: preparamos el fech par aconseguir el token
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            });
-            const token = response.json()
-            /**
-             * Comprobamos el estado de la respuesta, para comprobar si ha respondido de manera
-             * correcta
-             */
-            
-            if(response.status === 200) {
-                /**
-                 * //En caso de que haya funcionado, seteamos en el localStorage el token
-                 * (no es una práctica demasiado correcta pero sirve por ahora), también 
-                 * seteamos los datos del usuario
-                 */
-                localStorage.setItem(TOKEN_KEY, token);
+        try{
+            const response = await api.post("/login", {email, password})
+            if (response.status === 200) {
+                const token = await response.data
+                console.log(token);
+                localStorage.setItem(TOKEN_KEY, token.accessToken)
                 setUser({
-                    isLogged: true, 
+                    isLogged: true,
                     email: token.user.email,
                     id: token.user.id
                 })
-                //Devolvemos conforme el resultado
-                return {error: false, data: 'Sesion iniciada'}
+                return {error: false, data: 'Sesión iniciada correctamente'}
             } else {
-                return {error: true, data: 'Usuario y/o contraseña incorrecta'}
+                console.log("Fallo en if")
+                return {error: true, data: 'Usuario o contraseña incorrecta'};
             }
         } catch (error) {
-            console.log(error)
+            console.log("Fallo en catch")
+            return {error: true, data: 'Usuario o contraseña incorrecta'};
         }
     }
 
     //Deslogueo al usuario
-    const logout = () => {
+    const logout = (navigate) => {
         setUser({
             isLogged: false,
             email:'',
             id:0,
-            jwt:''
+            jwt:""
         })
-        //Y removemos el token del localStorage
         localStorage.removeItem(TOKEN_KEY);
+        navigate("/")
     }
 
     const register = async (email, password) => {
         try {
-            const response = await fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            })
-            const token = response.json()
+            const response = await api.post("/register", { email, password})
             if (response.status === 201) {
                 return{error: false, data: 'Usuario creado'}
             }else {
@@ -85,16 +66,63 @@ const AuthProvider = ({children}) => {
             }
         } catch (error){
             console.log(error)
+            return {error: true, data: 'Error al crear el usuario'}
         }
     }
 
+    //Listado:
+    const [games, setGames] = useState([]);
+    const [juegoBuscado, setJuegoBuscado] = useState('')
+
+    const downloadGames = async () => {
+        const response = await api.get("/games")
+        const apiGames = await response.data;
+        setGames(apiGames);
+    }
+  
+    const deleteGames = async (id) => {
+      const response = await api.delete(`/games/${id}`)
+      if (response.status === 200) {
+        downloadGames();
+      }
+      return response.status === 200;
+    }
+
+    const buscarJuego = async (juego) => {
+        const response = await api.get("/games")
+        const apiGames = await response.data;
+        const filtraPorJuego = apiGames.filter(game => 
+          game.name.toLowerCase().includes(juego.toLowerCase())
+        )
+        setGames(filtraPorJuego)
+      }
+    
+      const busquedaCategoria = async (id) => {
+        const response = await api.get("/games") 
+        const categorias = await response.data;
+        const categoriasFiltradas = categorias.filter(game => 
+          Array.isArray(game.platforms) && game.platforms.includes(parseInt(id))
+        );
+        setGames(categoriasFiltradas);
+      }
+      
+      const busquedaPlataforma = async (id) => {
+        if (id == "0"){
+            downloadGames()
+        }
+        const response = await api.get("/games")
+        const plataformas = await response.data;
+        const plataformasFiltradas = plataformas.filter(game => 
+          Array.isArray(game.platforms) && game.platforms.includes(parseInt(id))
+        );
+        setGames(plataformasFiltradas);
+      }
+
     return(
-        <AuthContext.Provider value={{user, setUser, login, logout, register}}>
+        <AuthContext.Provider value={{user, redireccion ,setUser, login, logout, register, games, setGames, juegoBuscado, setJuegoBuscado, downloadGames, deleteGames, buscarJuego, busquedaCategoria, busquedaPlataforma}}>
             {children}
         </AuthContext.Provider>
     )
 }
 
 export {AuthContext, AuthProvider}
-
-    

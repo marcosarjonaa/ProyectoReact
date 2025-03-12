@@ -1,0 +1,9 @@
+body {
+    background-image: url('../../img/fondo.jpg');
+    background-color: black;
+}
+
+.home-button {
+    display: flex;
+    
+}

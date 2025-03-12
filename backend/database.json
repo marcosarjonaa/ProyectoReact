@@ -265,7 +265,7 @@
         6
       ],
       "category": [
-        5, 
+        5,
         8
       ],
       "cost": 69.99,
@@ -273,7 +273,21 @@
       "video": "https://www.youtube.com/watch?v=S6GTl_vPRvU"
     }
   ],
-  "users" : [
-    
+  "users": [
+    {
+      "email": "marcos@gmail.com",
+      "password": "$2a$10$qZm9sK0NvfrhqMoouS4vGe5XH3fsoMd3lfF7SXtgGacQ0gyPOjFaK",
+      "id": 1
+    },
+    {
+      "email": "pepe@gmail.com",
+      "password": "$2a$10$zCVRiPzE28crBmYeCnWQFutDF5SAsHKOOLYBjxqigTXN3rwrFTmSa",
+      "id": 2
+    },
+    {
+      "email": "pepe@copado.com",
+      "password": "$2a$10$M21CrcKfDAS3AEPQ0H130e4Kuerp70XrpdGE0SZ3ArnQfsr7lM4.i",
+      "id": 3
+    }
   ]
 }

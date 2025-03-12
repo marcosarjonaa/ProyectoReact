@@ -1,6 +1,5 @@
 import './css/GameList.css';
 import { useState } from 'react';
-import Detalles from './Detalles';
 
 const TeamList = ({games, deleteGame}) => {
     const[detallada, setDetallada] = useState("");

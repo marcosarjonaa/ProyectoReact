@@ -3,8 +3,8 @@ import { AuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import './css/registro.css';
 
-const Login = () => {
-    const { login } = useContext(AuthContext);
+const Register = () => {
+    const { register } = useContext(AuthContext);
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
@@ -12,30 +12,30 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (email.current.value && password.current.value) {
-            const response = await login(email.current.value, password.current.value);
+            const response = await register(email.current.value, password.current.value);
             if (!response.error) {
-                navigate('/home');
+                navigate('/');
             }
         }
     }
 
-    const registro = () => {
-        navigate("/register");
+    const login = () => {
+        navigate("/");
     }
 
     return (
         <div className="fondo">
             <div className="form-container">
-                <h1>Login</h1>
+                <h1>Registro</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="text" ref={email} placeholder="Email" />
                     <input type="password" ref={password} placeholder="Contraseña" />
-                    <button type="submit">Loguear usuario</button>
+                    <button type="submit">Registrar usuario</button>
                 </form>
-                <button onClick={registro}>¿No tienes cuenta? Crea una</button>
+                <button onClick={login}>¿Ya tienes cuenta? Inicia sesión</button>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Register;
