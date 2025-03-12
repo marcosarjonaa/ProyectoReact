@@ -128,7 +128,7 @@ function Header() {
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component="a"
                 href={pageLinks[page] || '#'}
-                target="_blank"
+                target={ page=="Games" ? "_self" : "_games"}
                 rel="noopener noreferrer"
               >
                 {page}

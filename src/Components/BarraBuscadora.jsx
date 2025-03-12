@@ -10,11 +10,6 @@ const BarraBuscadora = ( {buscarJuegos, setBuscarJuegos, juegoBuscado} ) => {
                 value={juegoBuscado}
                 onChange={(e) => setBuscarJuegos(e.target.value)}/>
             {
-            /* Comento esta linea porque no me sirve para nada 
-                ya que se busca al momento
-                <button className="barraBuscadora-button"
-                onClick={buscarJuegos}> Buscar</button>
-            */
             }
         </div>
     )

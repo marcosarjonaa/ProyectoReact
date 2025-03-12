@@ -118,8 +118,21 @@ const AuthProvider = ({children}) => {
         setGames(plataformasFiltradas);
       }
 
+      const addGame = async (game, navigate) => {
+        try {
+          const response = await api.post("/games", game);
+          if(response.status == 201){
+            navigate("/listado")
+          }else {
+            setErrorMessage("Error al crear el juego")
+          }
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     return(
-        <AuthContext.Provider value={{user, redireccion ,setUser, login, logout, register, games, setGames, juegoBuscado, setJuegoBuscado, downloadGames, deleteGames, buscarJuego, busquedaCategoria, busquedaPlataforma}}>
+        <AuthContext.Provider value={{user, redireccion ,setUser, login, logout, register, games, setGames, juegoBuscado, setJuegoBuscado, downloadGames, deleteGames, buscarJuego, busquedaCategoria, busquedaPlataforma, addGame}}>
             {children}
         </AuthContext.Provider>
     )

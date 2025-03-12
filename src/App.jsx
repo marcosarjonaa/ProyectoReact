@@ -7,6 +7,8 @@ import Login from './Pages/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Register from './Pages/Register';
 import Home from './Pages/Home';
+import Perfil from './Pages/Perfil';
+import Add from './Pages/Add';
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} /> 
           <Route path='/register' element={<Register />} /> 
-          <Route path='/perfil' element={<Home />}/>
+          <Route path='/perfil' element={<Perfil />}/>
+          <Route path='/listado/add' element={<Add />}/>
           <Route path='*' element={<Login />}/>
         </Routes>
       </BrowserRouter>

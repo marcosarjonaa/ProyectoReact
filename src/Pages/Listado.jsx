@@ -6,12 +6,12 @@ import { AuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Listado = ()=> {
-    const {redireccion} = useContext(AuthContext);
-    const {games, setGames} = useContext(AuthContext);
-    const {juegoBuscado, setJuegoBuscado} = useContext(AuthContext)
-    const {downloadGames, deleteGames} = useContext(AuthContext)
-    const {buscarJuego, busquedaCategoria, busquedaPlataforma} = useContext(AuthContext)
-    const navigate = useNavigate()
+  const {games, setGames} = useContext(AuthContext);
+  const {juegoBuscado, setJuegoBuscado} = useContext(AuthContext)
+  const {downloadGames, deleteGames} = useContext(AuthContext)
+  const {buscarJuego, busquedaCategoria, busquedaPlataforma} = useContext(AuthContext)
+  const {redireccion} = useContext(AuthContext);
+  const navigate = useNavigate()
       
     useEffect(() => {
       redireccion(navigate)

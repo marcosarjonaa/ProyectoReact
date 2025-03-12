@@ -1,0 +1,9 @@
+.bodyPerfil { 
+    text-align: center;
+    background-color: white;
+    border-radius: 500px;
+    border: 2px dashed purple;
+    width: fit-content;
+    padding: 50px;
+    height:fit-content
+}
